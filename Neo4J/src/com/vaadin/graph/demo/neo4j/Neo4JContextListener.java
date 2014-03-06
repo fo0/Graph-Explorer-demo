@@ -1,14 +1,17 @@
 package com.vaadin.graph.demo.neo4j;
 
-import java.io.*;
+import java.io.File;
+import java.io.IOException;
 
-import javax.servlet.*;
+import javax.servlet.ServletContextEvent;
+import javax.servlet.ServletContextListener;
 
-import org.neo4j.kernel.EmbeddedGraphDatabase;
+import org.neo4j.graphdb.GraphDatabaseService;
+import org.neo4j.graphdb.factory.GraphDatabaseFactory;
 
 public class Neo4JContextListener implements ServletContextListener {
     private final String path;
-    private EmbeddedGraphDatabase graphdb;
+    private GraphDatabaseService graphdb;
 
     public Neo4JContextListener() throws IOException {
         path = new File(System.getProperty("user.home"), "graphdb").getCanonicalPath();
@@ -22,7 +25,7 @@ public class Neo4JContextListener implements ServletContextListener {
 
     @Override
     public void contextInitialized(ServletContextEvent event) {
-        graphdb = new EmbeddedGraphDatabase(path);
+        graphdb = new GraphDatabaseFactory().newEmbeddedDatabase(path);
         event.getServletContext().setAttribute(Neo4JDemo.GRAPHDB, graphdb);
     }
 }

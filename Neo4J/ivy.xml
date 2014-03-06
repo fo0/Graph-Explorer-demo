@@ -33,6 +33,6 @@
 		</dependency>
 		<dependency org="org.vaadin.addons" name="gwt-graphics" rev="1.0.0" />
 
-		<dependency org="org.neo4j" name="neo4j-kernel" rev="1.3.M03" />
+		<dependency org="org.neo4j" name="neo4j-kernel" rev="1.9" />
 	</dependencies>
 </ivy-module>

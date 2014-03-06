@@ -1,16 +1,24 @@
 package com.vaadin.graph.demo.neo4j;
 
-import java.util.*;
+import java.util.AbstractCollection;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Set;
 
-import org.neo4j.graphdb.*;
-import org.neo4j.kernel.EmbeddedGraphDatabase;
+import org.neo4j.graphdb.Direction;
+import org.neo4j.graphdb.GraphDatabaseService;
+import org.neo4j.graphdb.Relationship;
+import org.neo4j.graphdb.RelationshipType;
+import org.neo4j.tooling.GlobalGraphOperations;
 
-import com.vaadin.graph.*;
+import com.vaadin.graph.Arc;
+import com.vaadin.graph.GraphRepository;
 
 final class Neo4JRepository implements GraphRepository<Neo4JNode, Neo4JArc> {
-    private final EmbeddedGraphDatabase graphdb;
+    private final GraphDatabaseService graphdb;
 
-    public Neo4JRepository(EmbeddedGraphDatabase graphdb) {
+    public Neo4JRepository(GraphDatabaseService graphdb) {
         this.graphdb = graphdb;
     }
 
@@ -27,7 +35,7 @@ final class Neo4JRepository implements GraphRepository<Neo4JNode, Neo4JArc> {
     @Override
     public Collection<String> getArcLabels() {
         Set<String> labels = new HashSet<String>();
-        for (RelationshipType type : graphdb.getRelationshipTypes()) {
+        for (RelationshipType type : GlobalGraphOperations.at(graphdb).getAllRelationshipTypes()) {
             labels.add(type.name());
         }
         return labels;
