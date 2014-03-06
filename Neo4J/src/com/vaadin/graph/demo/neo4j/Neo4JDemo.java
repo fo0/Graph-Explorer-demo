@@ -19,30 +19,27 @@ import javax.servlet.ServletContext;
 
 import org.neo4j.kernel.EmbeddedGraphDatabase;
 
-import com.vaadin.Application;
+import com.vaadin.annotations.Theme;
 import com.vaadin.graph.GraphExplorer;
-import com.vaadin.terminal.gwt.server.WebApplicationContext;
-import com.vaadin.ui.*;
+import com.vaadin.server.Page;
+import com.vaadin.server.VaadinRequest;
+import com.vaadin.server.VaadinServletRequest;
+import com.vaadin.ui.UI;
 
-public class Neo4JDemo extends Application {
+@Theme("neo4j")
+public class Neo4JDemo extends UI {
     private static final long serialVersionUID = 1L;
+
     public static final String GRAPHDB = "graphdb";
-    private Window window;
 
     @Override
-    public void init() {
-        ServletContext servletContext = ((WebApplicationContext) getContext()).getHttpSession().getServletContext();
+    public void init(VaadinRequest request) {
+        ServletContext servletContext = ((VaadinServletRequest)request).getHttpServletRequest().getSession().getServletContext();
         EmbeddedGraphDatabase graphdb = (EmbeddedGraphDatabase) servletContext.getAttribute(GRAPHDB);
-
-        window = new Window("Graph Explorer demo");
-        setMainWindow(window);
 
         Neo4JRepository repo = new Neo4JRepository(graphdb);
         GraphExplorer<Neo4JNode, Neo4JArc> graph = new GraphExplorer<Neo4JNode, Neo4JArc>(repo);
-        window.addComponent(graph);
-
-        VerticalLayout content = (VerticalLayout) window.getContent();
-        content.setSizeFull();
-        content.setExpandRatio(graph, 1);
+        setContent(graph);
+        Page.getCurrent().setTitle("Graph Explorer demo");
     }
 }

@@ -4,8 +4,7 @@
 	xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
 	<display-name>code-graph</display-name>
 	<context-param>
-		<description>
-		Vaadin production mode</description>
+		<description>Vaadin production mode</description>
 		<param-name>productionMode</param-name>
 		<param-value>false</param-value>
 	</context-param>
@@ -14,12 +13,16 @@
 	</listener>
 	<servlet>
 		<servlet-name>Code-graph-demo</servlet-name>
-		<servlet-class>com.vaadin.terminal.gwt.server.ApplicationServlet</servlet-class>
+		<servlet-class>com.vaadin.server.VaadinServlet</servlet-class>
 		<init-param>
-			<description>
-			Vaadin application class to start</description>
-			<param-name>application</param-name>
+			<description>Vaadin application class to start</description>
+			<param-name>UI</param-name>
 			<param-value>com.vaadin.graph.demo.codegraph.CodeGraphDemo</param-value>
+		</init-param>
+		<init-param>
+			<description>Application widgetset</description>
+			<param-name>widgetset</param-name>
+			<param-value>com.vaadin.graph.demo.codegraph.CodeGraphDemoWidgetset</param-value>
 		</init-param>
 	</servlet>
 	<servlet-mapping>

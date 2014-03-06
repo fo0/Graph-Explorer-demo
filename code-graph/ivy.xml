@@ -21,16 +21,25 @@
 	xmlns:m="http://ant.apache.org/ivy/maven" xsi:noNamespaceSchemaLocation="http://ant.apache.org/ivy/schemas/ivy.xsd">
 	<info organisation="com.vaadin" module="code-graph-demo" status="integration">
 	</info>
+	<configurations>
+		<!-- The default configuration, which should be deployed to the server -->
+		<conf name="default" />
+		<!-- A configuration only needed when compiling the widget set. Should 
+			not be deployed to the server -->
+		<conf name="widgetset-compile" />
+		<!-- A configuration used in compilation of server side classes only.
+			Should be deployed to the server -->
+		<conf name="nodeploy" />
+	</configurations>	
 	<dependencies>
-		<dependency org="com.vaadin" name="vaadin" rev="6.7.4" />
+		<dependency org="com.vaadin" name="vaadin-server" rev="7.1.11" />
+		<dependency org="com.vaadin" name="vaadin-themes" rev="7.1.11" />
+		<dependency org="com.vaadin" name="vaadin-client-compiled" rev="7.1.11" />
+		<dependency org="com.vaadin" name="vaadin-client" rev="7.1.11" conf="widgetset-compile->default" />
+		<dependency org="com.vaadin" name="vaadin-client-compiler" rev="7.1.11" conf="widgetset-compile->default" />
 
-		<dependency org="net.sf.jung" name="jung-api" rev="2.0.1" />
 		<dependency org="net.sf.jung" name="jung-graph-impl" rev="2.0.1" />
 		<dependency org="net.sf.jung" name="jung-algorithms" rev="2.0.1" />
-		<dependency org="net.sf.jung" name="jung-visualization" rev="2.0.1" />
-		<dependency org="net.sf.json-lib" name="json-lib" rev="2.4">
-			<artifact name="json-lib" type="jar" m:classifier="jdk15" />
-		</dependency>
 		<dependency org="org.vaadin.addons" name="gwt-graphics" rev="1.0.0" />
 	</dependencies>
 </ivy-module>
