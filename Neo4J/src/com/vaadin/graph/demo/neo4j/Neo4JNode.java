@@ -3,6 +3,7 @@ package com.vaadin.graph.demo.neo4j;
 import java.util.Map;
 
 import com.vaadin.graph.Node;
+import com.vaadin.server.Resource;
 
 final class Neo4JNode implements Node {
     private static final String WORD = "word";
@@ -38,4 +39,9 @@ final class Neo4JNode implements Node {
         }
         return "" + inner.getProperty(property);
     }
+    
+    public Resource getIcon() {
+    	return null;
+    }
+
 }

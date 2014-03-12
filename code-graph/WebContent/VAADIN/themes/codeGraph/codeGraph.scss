@@ -4,8 +4,32 @@
 @mixin codeGraph {
   @include reindeer;
   @include graph-explorer;
+    
+  .v-graph-explorer .node.root {
+	background-color: yellow;
+  }
+
+  .v-graph-explorer .node.blue {
+	background-color: blue;
+  }
+
+  .thick-blue-svg {
+	stroke: blue;
+	stroke-width: 5;
+  }
+
+  .arc.thick-blue {
+  	border: 5px dotted blue; 
+  }
+
+  .thin-red-svg {
+	stroke: red;
+  }
   
-  
+  .arc.thin-red {
+  	border: 1px dotted red; 
+  }
+    
   /* Center the loading indicator */
   .v-loading-indicator,.v-loading-indicator-delay,.v-loading-indicator-wait {
 	width: 100%;

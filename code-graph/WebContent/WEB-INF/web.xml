@@ -8,9 +8,6 @@
 		<param-name>productionMode</param-name>
 		<param-value>false</param-value>
 	</context-param>
-	<listener>
-		<listener-class>com.vaadin.graph.demo.codegraph.CodeGraphContextListener</listener-class>
-	</listener>
 	<servlet>
 		<servlet-name>Code-graph-demo</servlet-name>
 		<servlet-class>com.vaadin.server.VaadinServlet</servlet-class>
