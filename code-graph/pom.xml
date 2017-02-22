@@ -5,12 +5,13 @@
 	<groupId>org.vaadin.addons</groupId>
 	<artifactId>graph-explorer-demo-simple</artifactId>
 	<packaging>war</packaging>
-	<version>0.7.0</version>
+	<version>0.8.0</version>
 	<name>Graph Explorer Demo - Simple graph repository</name>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<vaadin.version>7.3.10</vaadin.version>
+		<graph-explorer.version>${project.version}</graph-explorer.version>
+		<vaadin.version>8.0.0</vaadin.version>
 		<vaadin.plugin.version>${vaadin.version}</vaadin.plugin.version>
 	</properties>
 
@@ -67,7 +68,7 @@
 		<dependency>
 			<groupId>org.vaadin.addons</groupId>
 			<artifactId>graph-explorer</artifactId>
-			<version>${version}</version>
+			<version>${graph-explorer.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>com.vaadin</groupId>
@@ -78,6 +79,7 @@
 			<groupId>com.vaadin</groupId>
 			<artifactId>vaadin-client-compiler</artifactId>
 			<version>${vaadin.version}</version>
+			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>com.vaadin</groupId>
@@ -100,8 +102,8 @@
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>3.0</version>
 				<configuration>
-					<source>1.6</source>
-					<target>1.6</target>
+					<source>1.8</source>
+					<target>1.8</target>
 				</configuration>
 			</plugin>
 
@@ -171,9 +173,9 @@
 			</plugin>
 
 			<plugin>
-				<groupId>org.mortbay.jetty</groupId>
+				<groupId>org.eclipse.jetty</groupId>
 				<artifactId>jetty-maven-plugin</artifactId>
-				<version>8.1.10.v20130312</version>
+				<version>9.3.15.v20161220</version>
 				<configuration>
 					<webApp>
 						<contextPath>/</contextPath>

@@ -1,8 +1,8 @@
 package com.vaadin.graph.demo.codegraph;
 
 import com.vaadin.annotations.Theme;
-import com.vaadin.data.Property.ValueChangeEvent;
-import com.vaadin.data.Property.ValueChangeListener;
+import com.vaadin.data.HasValue.ValueChangeEvent;
+import com.vaadin.data.HasValue.ValueChangeListener;
 import com.vaadin.graph.GraphExplorer;
 import com.vaadin.graph.layout.JungCircleLayoutEngine;
 import com.vaadin.graph.layout.JungFRLayoutEngine;
@@ -29,7 +29,7 @@ public class CodeGraphDemo extends UI {
     	VerticalLayout content = new VerticalLayout();
     	layout = new CssLayout();
     	layout.setSizeFull();
-    	ComboBox select = createLayoutSelect();
+    	ComboBox<String> select = createLayoutSelect();
     	content.addComponent(select);
     	content.addComponent(layout);
     	content.setExpandRatio(layout, 1);
@@ -89,17 +89,15 @@ public class CodeGraphDemo extends UI {
     	return repo;
     }
 
-    private ComboBox createLayoutSelect() {
-    	final ComboBox select = new ComboBox("Select layout algorithm");
-    	select.addItem("FR");
-    	select.addItem("Circle");
-    	select.addItem("ISOM");
-    	select.addValueChangeListener(new ValueChangeListener() {
+    	final ComboBox<String> select = new ComboBox<String>("Select layout algorithm");
+    	private ComboBox<String> createLayoutSelect() {
+    	select.setItems("FR", "Circle", "ISOM");
+    	select.addValueChangeListener(new ValueChangeListener<String>() {
 			
 			private static final long serialVersionUID = 1L;
 
 			@Override
-			public void valueChange(ValueChangeEvent event) {
+			public void valueChange(ValueChangeEvent<String> event) {
 				if ("FR".equals(select.getValue())) {
 					graph.setLayoutEngine(new JungFRLayoutEngine());
 				} else if ("Circle".equals(select.getValue())) {
